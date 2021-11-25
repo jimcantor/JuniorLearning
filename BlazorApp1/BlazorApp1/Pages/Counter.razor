@@ -2,17 +2,27 @@
 
 <PageTitle>Counter</PageTitle>
 
-<h1>Counter</h1>
+<ul class="list-group">
+    @foreach(var item in items)
+    {
+        <li class="list-group-item">
+            <h1>@item.Value</h1>
+        </li>
 
-<p role="status">Current count: @currentCount</p>
-
-<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+    }
+</ul>
 
 @code {
-    private int currentCount = 0;
+    IEnumerable<Color> items = new Color[]
+        {
+        new Color(){Id=0,Value="Green"},
+        new Color(){Id=1,Value="Blue"},
+        new Color(){Id=2,Value="Orange"}
+        };
 
-    private void IncrementCount()
+    public class Color
     {
-        currentCount++;
+        public int Id { get; set; }
+        public string Value { get; set; }
     }
 }
